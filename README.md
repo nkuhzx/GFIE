@@ -12,8 +12,8 @@ git clone https://github.com/nkuhzx/GFIE
 
 2. (optional) Use the `.yaml` file to re-create the environment we used
 ```bash
-conda env create -f gfie.yml
-conda activate gfie.yml
+conda env create -f gfie.yaml
+conda activate gfie.yaml
 ```
 
 3. Set the available GPU in [`inference.py`](inference.py) and [`main.py`](inference.py)
