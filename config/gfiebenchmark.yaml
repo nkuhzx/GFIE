@@ -1,0 +1,37 @@
+DATASET:
+
+  root_dir: "/home/hzx/Dataset/GFIE_dataset"
+  rgb: "rgb"
+  depth: "depth"
+  camerapara: "CameraKinect.npy"
+
+  train: "train_annotation.txt"
+  valid: "valid_annotation.txt"
+  test: "test_annotation.txt"
+
+
+  train_batch_size: 32
+
+MODEL:
+  backboneptpath: "/extend/hzx/Model_para/ptbackbone.pt"
+
+TRAIN:
+  lr: 1e-4
+  weightDecay: 1e-4
+
+  resume: False
+  resume_add: ""
+
+  store: "/extend/hzx/Model_para/GFIEpub_model/"
+
+  save_intervel: 1
+
+  end_epoch: 20
+
+OTHER:
+
+  lossrec_every: 100
+
+  evalrec_every: 1000
+
+  cpkt: "/extend/hzx/Model_para/GFIEpub_model/gfiemodel_11epoch.pth.tar"

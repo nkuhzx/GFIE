@@ -1,0 +1,32 @@
+DATASET:
+
+  root_dir: "/home/hzx/Dataset/CAD120"
+  rgb: "rgb"
+  depth: "depth"
+  camerapara: "CameraKinect.npy"
+
+  test: "annotation.txt"
+
+
+  test_batch_size: 64
+
+TRAIN:
+  lr: 1e-4
+  weightDecay: 1e-4
+
+  resume: False
+  resume_add: ""
+
+  store: "/extend/hzx/Model_para/GFIEpub_model/"
+
+  save_intervel: 3
+
+  end_epoch: 18
+
+OTHER:
+
+  lossrec_every: 100
+
+  evalrec_every: 1000
+
+  cpkt: "/extend/hzx/Model_para/GFIEpub_model/gfiemodel_11epoch.pth.tar"
