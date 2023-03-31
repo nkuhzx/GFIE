@@ -66,15 +66,15 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ID
 `Note: The decompressed file is about 350 GB, please check the capacity of your hard disk to ensrure that the dataset can be stored.`
 
 
-4. Then you need to modify the address of the configuration ([cad120evaluation.yaml](config/cad120evaluation.yaml) | [gfiebenchmark.yaml](config/gfiebenchmark.yaml))
+4. Then you need to modify the address of the configuration ([`cad120evaluation.yaml`](config/cad120evaluation.yaml) | [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml))
 
-[gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+[`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 ```bash
 DATASET:
   root_dir: "YOUR_PATH/GFIE_dataset"
 ```
 
-[cad120evaluation.yaml](config/cad120evaluation.yaml) 
+[`cad120evaluation.yaml`](config/cad120evaluation.yaml) 
 ```bash
 DATASET:
   root_dir: "YOUR_PATH/CAD120_dataset"
@@ -88,14 +88,14 @@ DATASET:
 
 After all the prerequisites are met, you can train the GFIE baseline method we proposed in the paper.
 
-1. Set the path `STORE_PATH` to save the model file in the [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+1. Set the path `STORE_PATH` to save the model file in the [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
 ```bash
 TRAIN:
   store: "STORE_PATH"
 ```
 
-2. Download the [pre-trained model weights](https://drive.google.com/file/d/1eXWy4-bg5BQeCHbyH6R1dbWceGCNKPe4/view?usp=sharing) to `PATH`, and then set the path of pre-trained weights in [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+2. Download the [pre-trained model weights](https://drive.google.com/file/d/1eXWy4-bg5BQeCHbyH6R1dbWceGCNKPe4/view?usp=sharing) to `PATH`, and then set the path of pre-trained weights in [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
 ```bash
 MODEL:
@@ -109,7 +109,7 @@ python main.py
 
 ### Evaluation
 
-1. Set the absolute path of the model weight `cpkt_PATH` in the [cad120evaluation.yaml](config/cad120evaluation.yaml) | [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+1. Set the absolute path of the model weight `cpkt_PATH` in the [`cad120evaluation.yaml`](config/cad120evaluation.yaml) and [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
 ```bash
 OTHER:
