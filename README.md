@@ -1,6 +1,6 @@
 # GFIE: A Dataset and Baseline for Gaze-Following from 2D to 3D in Indoor Environments
 
-This repository is the official pytorch implementation of our CVPR 2023 work: GFIE: A Dataset and Baseline for Gaze-Following from 2D to 3D in Indoor Environments
+This official repository is the pytorch implementation of our CVPR 2023 work: GFIE: A Dataset and Baseline for Gaze-Following from 2D to 3D in Indoor Environments
 
 [![](https://shields.io/badge/homepage-website-pink?logo=appveyor&style=for-the-badge)](https://sites.google.com/view/gfie)
 
