@@ -88,8 +88,8 @@ DATASET:
 
 After all the prerequisites are met, you can train the GFIE baseline method we proposed in the paper.
 
-1. Set the path `STORE_PATH~~~~` to save the model file in the [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
-[gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+1. Set the path `STORE_PATH` to save the model file in the [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
+
 ```bash
 TRAIN:
   store: "STORE_PATH"
@@ -97,7 +97,6 @@ TRAIN:
 
 2. Download the [pre-trained model weights](https://drive.google.com/file/d/1eXWy4-bg5BQeCHbyH6R1dbWceGCNKPe4/view?usp=sharing) to `PATH`, and then set the path of pre-trained weights in [gfiebenchmark.yaml](config/gfiebenchmark.yaml)
 
-[gfiebenchmark.yaml](config/gfiebenchmark.yaml)
 ```bash
 MODEL:
   backboneptpath: "PATH/ptbackbone.pt"
@@ -120,7 +119,11 @@ OTHER:
 2. Run the inference program and the evaluation results will be displayed in the termainal.
 
 ```bash
-python inference.py
+# evaluation on GFIE dataset
+python inference.py --mode gfie
+
+# evaluation on CAD120 dataset
+python inference.py --mode cad120
 ```
 
 ### Model weights

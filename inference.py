@@ -134,7 +134,7 @@ if __name__ == '__main__':
 
     parser.add_argument(
         "--cfg",
-        default="config/gfiebenchmark.yaml",
+        default="config/default.yaml",
         metavar="FILE",
         help="path to config file",
         type=str,
@@ -153,8 +153,14 @@ if __name__ == '__main__':
         type=str,
     )
 
-
     args=parser.parse_args()
+
+    if args.mode=="cad120":
+        args.cfg="config/cad120evaluation.yaml"
+    elif args.mode=="gfie":
+        args.cfg="config/gfiebenchmark.yaml"
+    else:
+        raise NotImplementedError("Please select the correct dataset for evalution (gfie or cad120)")
 
     cfg.merge_from_file(args.cfg)
 
