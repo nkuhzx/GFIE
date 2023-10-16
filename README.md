@@ -24,61 +24,72 @@ os.environ['CUDA_VISIBLE_DEVICES'] = ID
 
 ## Dataset Preparation
 
+### Download from Google Drive
 1. Please download the [GFIE dataset](https://drive.google.com/drive/folders/1AKA1jCVdrMmLIXqTeNNCFo5VnUrAcplq?usp=sharing) and [CAD120 dataset](https://drive.google.com/drive/folders/1PNe5AYHd2pdMJin4YzO1ntsdpoZH7pQb?usp=sharing) from the Google Drive. 
 2. Unzip rgb.zip and depth.zip into corresponding folders.
+
+### Download via shell script
+
+1. If the Google Drive is not available, you can run a script to download the GFIE dataset
+2. run the `download_gfie.sh/ download_cad120.sh` script
+
+    ```bash
+    sh download_gfie.sh
+    sh download_cad120.sh
+    ```
+
 3. The file structure should be as follows:
 
-```bash
-├── GFIE_dataset/
-|   ├── rgb/
-|   |   ├── train/
-|   |   |   ├── scene1/ # scene id
-|   |   |   |   └── '*.jpg' # n frame jpg`
-|   |   |   └── ...
-|   |   ├── valid/
-|   |   |   └── ...
-|   |   ├── test/
-|   |   |   └── ...
-|   ├── depth/
-|   |   ├── train/
-|   |   |   ├── scene1/ # scene id
-|   |   |   |   └── '*.npy' # n frame npy`
-|   |   ├── valid/
-|   |   |   └── ...
-|   |   ├── test/
-|   |   |   └── ...
-|   ├── CameraKinect.npy
-|   ├── train_annotation.txt
-|   ├── valid_annotation.txt
-|   └── test_annotation.txt
-├── CAD120_dataset/
-|   ├── rgb/
-|   |   ├── D1S1A001/
-|   |   |   └── 'RGB_*.png' # n frame png`
-|   |   └── ...
-|   ├── depth/
-|   |   ├── D1S1A001/
-|   |   |   └── 'Depth_*.png' # n frame png`
-|   |   └── ...
-|   ├── CameraKinect.npy
-└── └── annotation.txt
-```
-`Note: The decompressed file is about 350 GB, please check the capacity of your hard disk to ensrure that the dataset can be stored.`
-
+    ```bash
+    ├── GFIE_dataset/
+    |   ├── rgb/
+    |   |   ├── train/
+    |   |   |   ├── scene1/ # scene id
+    |   |   |   |   └── '*.jpg' # n frame jpg`
+    |   |   |   └── ...
+    |   |   ├── valid/
+    |   |   |   └── ...
+    |   |   ├── test/
+    |   |   |   └── ...
+    |   ├── depth/
+    |   |   ├── train/
+    |   |   |   ├── scene1/ # scene id
+    |   |   |   |   └── '*.npy' # n frame npy`
+    |   |   ├── valid/
+    |   |   |   └── ...
+    |   |   ├── test/
+    |   |   |   └── ...
+    |   ├── CameraKinect.npy
+    |   ├── train_annotation.txt
+    |   ├── valid_annotation.txt
+    |   └── test_annotation.txt
+    ├── CAD120_dataset/
+    |   ├── rgb/
+    |   |   ├── D1S1A001/
+    |   |   |   └── 'RGB_*.png' # n frame png`
+    |   |   └── ...
+    |   ├── depth/
+    |   |   ├── D1S1A001/
+    |   |   |   └── 'Depth_*.png' # n frame png`
+    |   |   └── ...
+    |   ├── CameraKinect.npy
+    └── └── annotation.txt
+    ```
+    `Note: The decompressed file is about 350 GB, please check the capacity of your hard disk to ensrure that the dataset can be stored.`
 
 4. Then you need to modify the address of the configuration ([`cad120evaluation.yaml`](config/cad120evaluation.yaml) | [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml))
 
-[`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
-```bash
-DATASET:
-  root_dir: "YOUR_PATH/GFIE_dataset"
-```
+    [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
+    ```bash
+    DATASET:
+      root_dir: "YOUR_PATH/GFIE_dataset"
+    ```
 
-[`cad120evaluation.yaml`](config/cad120evaluation.yaml) 
-```bash
-DATASET:
-  root_dir: "YOUR_PATH/CAD120_dataset"
-```
+    [`cad120evaluation.yaml`](config/cad120evaluation.yaml) 
+    ```bash
+    DATASET:
+      root_dir: "YOUR_PATH/CAD120_dataset"
+    ```
 
 `YOUR_PATH` is the root path of `GFIE_dataset` and `CAD120_dataset`.
 
@@ -90,41 +101,41 @@ After all the prerequisites are met, you can train the GFIE baseline method we p
 
 1. Set the path `STORE_PATH` to save the model file in the [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
-```bash
-TRAIN:
-  store: "STORE_PATH"
-```
+    ```bash
+    TRAIN:
+      store: "STORE_PATH"
+    ```
 
 2. Download the [pre-trained model weights](https://drive.google.com/file/d/1eXWy4-bg5BQeCHbyH6R1dbWceGCNKPe4/view?usp=sharing) to `PATH`, and then set the path of pre-trained weights in [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
-```bash
-MODEL:
-  backboneptpath: "PATH/ptbackbone.pt"
-```
+    ```bash
+    MODEL:
+      backboneptpath: "PATH/ptbackbone.pt"
+    ```
 
 3. Then run the training procedure
-```bash
-python main.py
-```
+    ```bash
+    python main.py
+    ```
 
 ### Evaluation
 
 1. Set the absolute path of the model weight `cpkt_PATH` in the [`cad120evaluation.yaml`](config/cad120evaluation.yaml) and [`gfiebenchmark.yaml`](config/gfiebenchmark.yaml)
 
-```bash
-OTHER:
-  cpkt: "cpkt_PATH"
-```
+    ```bash
+    OTHER:
+      cpkt: "cpkt_PATH"
+    ```
 
 2. Run the inference program and the evaluation results will be displayed in the termainal.
 
-```bash
-# evaluation on GFIE dataset
-python inference.py --mode gfie
-
-# evaluation on CAD120 dataset
-python inference.py --mode cad120
-```
+    ```bash
+    # evaluation on GFIE dataset
+    python inference.py --mode gfie
+    
+    # evaluation on CAD120 dataset
+    python inference.py --mode cad120
+    ```
 
 ### Model weights
 
@@ -135,12 +146,13 @@ We also provide the model weights for evaluation.
 ## Citation
 If you fine our dataset/code useful for your research, please cite our paper
 ```
-@inproceedings{
-hu2023gfie,
-title={GFIE: a dataset and baseline for gaze-followiung from 2d to 3d in indoor environments},
-author={Hu, Zhengxi and Yang, Yuxue and Zhai, Xiaolin and Yang, Dingye, and Zhou, Bohan and Liu, Jingtai},
-booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-year={2023}
+@InProceedings{Hu_2023_CVPR,
+    author    = {Hu, Zhengxi and Yang, Yuxue and Zhai, Xiaolin and Yang, Dingye and Zhou, Bohan and Liu, Jingtai},
+    title     = {GFIE: A Dataset and Baseline for Gaze-Following From 2D to 3D in Indoor Environments},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {8907-8916}
 }
 ```
 
